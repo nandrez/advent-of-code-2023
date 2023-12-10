@@ -3,10 +3,22 @@ import java.security.MessageDigest
 import kotlin.io.path.Path
 import kotlin.io.path.readLines
 
-/**
- * Reads lines from the given input txt file.
- */
-fun readInput(name: String) = Path("src/$name.txt").readLines()
+fun readInputForDay(day: Int): List<String> {
+    val value = day.padZero()
+    return Path("src/day$value/Day$value.txt").readLines()
+}
+
+fun readInputForDay(day: Int, part: Int): List<String> {
+    val zeroPadded = day.padZero()
+    return Path("src/day$zeroPadded/Day" + zeroPadded + "_part" + part +  ".txt").readLines()
+}
+
+fun readExampleInputForDay(day: Int, part: Int): List<String> {
+    val zeroPadded = day.padZero()
+    return Path("src/day$zeroPadded/Day" + zeroPadded + "_part" + part +  "-example.txt").readLines()
+}
+
+private fun Int.padZero() = toString().padStart(2, '0')
 
 /**
  * Converts string to md5 hash.
